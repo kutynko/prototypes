@@ -1,0 +1,21 @@
+﻿.page {
+	width: 90%;
+	max-width: 1200px;
+	margin: 10px auto;
+}
+
+.page-filter-panel {
+}
+
+.page-stundents-list {
+}
+
+.page-students-list-item.selected {
+	background-color: lightblue;
+}
+
+.page-operations {
+}
+
+.page-operations-preferences {
+}

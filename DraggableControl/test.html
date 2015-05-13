@@ -1,0 +1,97 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<style>
+		#grid {
+			border-width: 0;
+			height: 100%;
+		}
+
+		#ExpandSubNavButton {
+			display: none;
+		}
+
+		.target.closed {
+			max-height: 0;
+		}
+
+		.sizable {
+			transition-property: all;
+			transition-duration: .5s;
+		}
+
+		.target {
+			overflow-y: hidden;
+			max-height: 40px;
+			transition-property: all;
+			transition-duration: .5s;
+			transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+		}
+
+		html, body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}
+
+		html {
+			overflow: hidden;
+		}
+	</style>
+
+</head>
+    <body>
+        
+        <div style="padding:20px">
+            <div class="target" style="height: 40px; background-color:ActiveCaption;">
+                <button id="btn">Hide</button>
+            </div>
+            <div style="height: 40px; background-color:gray;">
+                <button id="ExpandSubNavButton">Show</button>
+            </div>
+            <div class="sizable" style="background-color:antiquewhite; padding:3px;">
+                some content
+            </div>
+        </div>
+
+        <script src="Scripts/jquery-2.1.3.min.js"></script>
+
+
+        <script>
+            $('#btn').click(function () {
+                $('.target').addClass("closed");
+                $("#ExpandSubNavButton").show();
+            });
+
+            $('#ExpandSubNavButton').click(function () {
+                $('.target').removeClass("closed");
+                $("#ExpandSubNavButton").hide();
+            });
+
+            function calculateHeight()
+            {
+            	var size = $('.target').height();
+            	if (!$('.target').hasClass('closed')) {
+            		size = -size; 
+            	}
+					 
+            	$('.sizable').height($(this).height() + size);
+            	//$('.sizable').height($(window).height() - $('.sizable').offset().top - 60);
+
+            	window.setTimeout(function () {
+            		$('.sizable').height($(window).height() - $('.sizable').offset().top - 60);
+            	}, 500);
+            }
+
+            calculateHeight();
+
+            $('#btn').click(function () {
+            	window.setTimeout(calculateHeight, 500);
+            });
+            
+            $('#ExpandSubNavButton').click(function () {
+            	window.setTimeout(calculateHeight, 500);
+            });
+        </script>
+    </body>
+    <html>

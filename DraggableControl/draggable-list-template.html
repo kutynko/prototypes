@@ -1,0 +1,5 @@
+﻿<div class="draggable-list">
+	<ul>
+		<li ng-mousedown="ctrl.startDrag(student)" ng-class="student.isSelected ? 'selected' : ''" ng-repeat="item in ctrl.data">{{item.studentName}}</li>
+	</ul>
+</div>
