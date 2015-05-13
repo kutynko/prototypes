@@ -3,52 +3,78 @@
 <head>
 	<title></title>
 	<link href="Content/site.css" rel="stylesheet" />
-	<link href="Content/select.css" rel="stylesheet" />
-	<link href="Content/ng-grid.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="page" ng-controller="orders-ctrl">
 		<div class="page-filter-panel">
-			filters
-
+			<input type="text" placeholder="Student Name" ng-model="filterName" />
+			<select ng-options="g for g in allGroups" ng-model="filterGroup">
+				<option value="all">all</option>
+				<option value="">no group</option>
+			</select>
 		</div>
-
 		<div class="page-students-list">
-			<ui-select ng-model="allOperations" title="Choose operation">
-				<ui-select-match placeholder="Select a person in the list or search his name/age...">{{}}</ui-select-match>
-				<ui-select-choices repeat="person in people | propsFilter: {name: $select.search, age: $select.search}">
-					<div ng-bind-html="person.name | highlight: $select.search"></div>
-					<small>
-						email: {{person.email}}
-						age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
-					</small>
-				</ui-select-choices>
-			</ui-select>
-			<table>
 
-				<tr ng-repeat="student in allStudents" ng-class='{"page-students-list-item selected": student.selected}'>
+			<table>
+				<tr ng-repeat="student in allStudents | filter:{group:filterGroup}:groupComparer | filter:{name:filterName}" ng-class='{"page-students-list-item selected": student.selected}'>
 					<td><input type="checkbox" ng-model="student.selected" /></td>
 					<td>{{student.name}}</td>
+					<td>{{student.group}}</td>
 				</tr>
 			</table>
 
 		</div>
 
 		<div class="page-operations">
+			<select ng-options="o as o.description group by o.category for o in allOperations track by o.id" ng-model="selectedOperation"></select>
 
+			<div class="page-operations-preferences">
+				<div ng-switch="selectedOperation.id">
+					<div ng-switch-when="1">
+						first opeartion fields
+					</div>
+					<div ng-switch-when="2">
+						second operation fields
+					</div>
+				</div>
+				<table>
+					<tr ng-repeat="field in selectedOperation.fields">
+						<td>{{field.caption}}:</td>
+						<td>
+							<div ng-switch="field.type">
+								<div ng-switch-when="DateTime">
+									<input type="text" ng-model="field.value" />
+								</div>
+								<div ng-switch-when="String">
+									<input type="datetime" ng-model="field.value" />
+								</div>
+							</div>
+
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<button ng-click="addProposal">Add</button>
+		</div>
+		<div class="page-order">
+
+			<table>
+				<tr ng-repeat="">
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
 
 		</div>
 
-		<div class="page-operations-preferences">
-
-
-		</div>
 	</div>
 
 
 
+
+	<script src="Scripts/underscore.js"></script>
 	<script src="Scripts/angular.js"></script>
-	<script src="Scripts/select.js"></script>
 	<script src="Scripts/app.js"></script>
 </body>
 </html>
