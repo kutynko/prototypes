@@ -23,11 +23,30 @@
 
 		$scope.addProposal = function () {
 
-			_.where($scope.allStudents, function (s) { return s.selected; }).forEach(function (s) { $scope.proposal.students.push(s); s.selected = false; });
+			_.filter($scope.allStudents, function (s) { return !!s.selected; }).forEach(function (s) { $scope.proposal.students.push(s); s.selected = false; });
 
 			$scope.proposal.operations.push($scope.selectedOperation);
 			$scope.selectedOperation = null;
-
 		};
 
+		$scope.selectAllStudents = function () {
+			var select = $scope.allStudents.allSelected;
+			_.forEach($scope.allStudents, function (s) { s.selected = select; });
+		}
+
+		$scope.canAddProposal = function () {
+			return !$scope.selectedOperation || _.every($scope.allStudents, function (s) { return !s.selected; });
+		}
+	}).
+	directive('tree-view', function () {
+		return {
+			template: '<span ng-click="expanded=(!expanded)">+</span>',
+			scope: {},
+			link: function () {
+
+			},
+			controller: function () {
+
+			}
+		};
 	});

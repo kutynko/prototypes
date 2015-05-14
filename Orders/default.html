@@ -16,11 +16,26 @@
 		<div class="page-students-list">
 
 			<table>
-				<tr ng-repeat="student in allStudents | filter:{group:filterGroup}:groupComparer | filter:{name:filterName}" ng-class='{"page-students-list-item selected": student.selected}'>
-					<td><input type="checkbox" ng-model="student.selected" /></td>
-					<td>{{student.name}}</td>
-					<td>{{student.group}}</td>
-				</tr>
+				<thead>
+					<tr>
+						<th>
+							<input type="checkbox" ng-model="allStudents.allSelected" ng-click="selectAllStudents()" />
+						</th>
+						<th>
+							Name
+						</th>
+						<th>
+							Group
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="student in allStudents | filter:{group:filterGroup}:groupComparer | filter:{name:filterName}" ng-class='{"page-students-list-item selected": student.selected}'>
+						<td><input type="checkbox" ng-model="student.selected" /></td>
+						<td>{{student.name}}</td>
+						<td>{{student.group}}</td>
+					</tr>
+				</tbody>
 			</table>
 
 		</div>
@@ -55,16 +70,19 @@
 				</table>
 			</div>
 
-			<button ng-click="addProposal">Add</button>
+			<button ng-click="addProposal()" ng-disabled="canAddProposal()">Add</button>
 		</div>
 		<div class="page-order">
 
-			<table>
-				<tr ng-repeat="">
-					<td></td>
-					<td></td>
-				</tr>
-			</table>
+
+			<div ng-repeat="operation in proposal.operations">
+				<span ng-click="operation.isExpanded=(!operation.isExpanded)">^</span>
+				<span>{{operation.description}}</span>
+
+				<div style="font-size: smaller; margin-left:40px;" ng-repeat="student in proposal.students" ng-show="operation.isExpanded">
+					<span>{{student.name}}</span>
+				</div>
+			</div>
 
 		</div>
 
