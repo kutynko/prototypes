@@ -84,6 +84,8 @@
     <Content Include="Content\select.css" />
     <Content Include="default.html" />
     <Content Include="Global.asax" />
+    <Content Include="Images\toggle-collapse-alt_blue.png" />
+    <Content Include="Images\toggle_expand_alt.png" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -91,6 +93,7 @@
     <Content Include="Scripts\ng-grid-1.3.2.debug.js" />
     <Content Include="Scripts\select.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\tree-view.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

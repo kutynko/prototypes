@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="demo">
 <head>
 	<title></title>
+	<link href="Content/tree-view.css" rel="stylesheet" />
 	<link href="Content/site.css" rel="stylesheet" />
 </head>
 <body>
@@ -74,25 +75,16 @@
 		</div>
 		<div class="page-order">
 
-
-			<div ng-repeat="operation in proposal.operations">
-				<span ng-click="operation.isExpanded=(!operation.isExpanded)">^</span>
-				<span>{{operation.description}}</span>
-
-				<div style="font-size: smaller; margin-left:40px;" ng-repeat="student in proposal.students" ng-show="operation.isExpanded">
-					<span>{{student.name}}</span>
-				</div>
-			</div>
-
+			<tree-view nodes="proposal"></tree-view>
 		</div>
 
 	</div>
 
 
 
-
 	<script src="Scripts/underscore.js"></script>
 	<script src="Scripts/angular.js"></script>
+	<script src="Scripts/tree-view.js"></script>
 	<script src="Scripts/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+﻿.tree-view {
+	display: block;
+}
+
+.tree-view-node {
+	display: block;
+	margin: 2px;
+	border: 1px solid black;
+}
+
+	.tree-view-node.selected {
+		background-color: lightblue;
+	}
+
+.tree-view-node-innerNodes {
+	margin-left: 40px;
+}
+
+.tree-view-node-icon {
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	margin: 5px 0 0 5px;
+}
+
+	.tree-view-node-icon.expanded {
+		background: url("../Images/toggle-collapse-alt.png") no-repeat scroll 0% 0% / 15px 15px transparent;
+	}
+
+	.tree-view-node-icon.collapsed {
+		background: url('../Images/toggle_expand_alt.png') no-repeat scroll 0% 0% / 15px 15px transparent;
+	}
+
+.tree-view-node-text {
+	margin-left: 5px;
+}
